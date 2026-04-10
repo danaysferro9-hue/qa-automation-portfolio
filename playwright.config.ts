@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import path from 'path';
 
 export default defineConfig({
   testDir: './tests',
@@ -13,7 +12,7 @@ export default defineConfig({
     ...(process.env.CI ? [['github'] as ['github']] : []),
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'https://automationexercise.com',
+    baseURL: process.env.BASE_URL || 'https://playground.calidadsinhumo.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
@@ -23,24 +22,25 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: ['tests/e2e/**/*.spec.ts', 'tests/accessibility/**/*.spec.ts'],
     },
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      testMatch: ['tests/e2e/**/*.spec.ts'],
     },
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      testMatch: ['tests/e2e/**/*.spec.ts'],
     },
     {
       name: 'mobile-chrome',
       use: { ...devices['Pixel 5'] },
+      testMatch: ['tests/e2e/**/*.spec.ts'],
     },
     {
       name: 'api',
-      use: {
-        baseURL: process.env.API_BASE_URL || 'https://automationexercise.com',
-      },
       testMatch: 'tests/api/**/*.spec.ts',
     },
   ],

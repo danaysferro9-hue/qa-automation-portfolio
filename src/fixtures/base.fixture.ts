@@ -1,14 +1,16 @@
 import { test as base } from '@playwright/test';
 import { HomePage } from '@pages/home.page';
 import { LoginPage } from '@pages/login.page';
-import { ProductsPage } from '@pages/products.page';
-import { CartPage } from '@pages/cart.page';
+import { RegisterPage } from '@pages/register.page';
+import { CoursesPage } from '@pages/courses.page';
+import { ProgressPage } from '@pages/progress.page';
 
 type Pages = {
   homePage: HomePage;
   loginPage: LoginPage;
-  productsPage: ProductsPage;
-  cartPage: CartPage;
+  registerPage: RegisterPage;
+  coursesPage: CoursesPage;
+  progressPage: ProgressPage;
 };
 
 export const test = base.extend<Pages>({
@@ -18,11 +20,14 @@ export const test = base.extend<Pages>({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
-  productsPage: async ({ page }, use) => {
-    await use(new ProductsPage(page));
+  registerPage: async ({ page }, use) => {
+    await use(new RegisterPage(page));
   },
-  cartPage: async ({ page }, use) => {
-    await use(new CartPage(page));
+  coursesPage: async ({ page }, use) => {
+    await use(new CoursesPage(page));
+  },
+  progressPage: async ({ page }, use) => {
+    await use(new ProgressPage(page));
   },
 });
 
