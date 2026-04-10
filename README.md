@@ -1,83 +1,83 @@
-# QA Automation Portfolio — Playwright + TypeScript
+# Portafolio QA Automation — Playwright + TypeScript
 
 [![Playwright Tests](https://github.com/danaysferro9-hue/qa-automation-portfolio/actions/workflows/playwright.yml/badge.svg)](https://github.com/danaysferro9-hue/qa-automation-portfolio/actions/workflows/playwright.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Playwright](https://img.shields.io/badge/Playwright-1.50-green)](https://playwright.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-yellow.svg)](LICENSE)
 
-End-to-end, API, and accessibility test suite built with **Playwright + TypeScript** targeting [Academia sin Humo Playground](https://playground.calidadsinhumo.com) — a public QA practice application designed for test automation learning.
+Suite de pruebas end-to-end, API y accesibilidad construida con **Playwright + TypeScript** sobre [Academia sin Humo Playground](https://playground.calidadsinhumo.com) — una aplicación pública de práctica diseñada para el aprendizaje de automatización de pruebas.
 
-This project demonstrates production-ready QA automation practices: Page Object Model, fixture-based composition, boundary value analysis, equivalence partitioning, decision table testing, state transition testing, and CI/CD integration with WCAG 2.1 AA accessibility coverage.
+Este proyecto demuestra prácticas de QA Automation listas para producción: Page Object Model, fixtures, análisis de valores límite, partición de equivalencias, pruebas de tabla de decisiones, transiciones de estado e integración CI/CD con cobertura de accesibilidad WCAG 2.1 AA.
 
 ---
 
-## What's covered
+## Cobertura de pruebas
 
-| Layer | Module | Tests | Technique |
-|-------|--------|-------|-----------|
-| E2E | Login | 7 | Boundary values, rate limiting |
-| E2E | Registro | 12 | Equivalence partitioning, boundary values |
-| E2E | Cursos | 6 | Decision table testing |
-| E2E | Progreso | 6 | State transition testing |
-| API | Enrollment API | 5 | HTTP contract validation |
-| Accessibility | WCAG 2.1 AA | 5 | axe-core audits |
+| Capa | Módulo | Tests | Técnica |
+|------|--------|-------|---------|
+| E2E | Login | 7 | Valores límite, bloqueo por intentos fallidos |
+| E2E | Registro | 12 | Partición de equivalencias, valores límite |
+| E2E | Cursos | 6 | Tabla de decisiones |
+| E2E | Progreso | 6 | Transiciones de estado |
+| API | Enrollment API | 5 | Validación de contratos HTTP |
+| Accesibilidad | WCAG 2.1 AA | 5 | Auditorías con axe-core |
 | **Total** | | **41** | |
 
 ---
 
-## Tech stack
+## Stack tecnológico
 
-| Tool | Purpose |
-|------|---------|
-| [Playwright](https://playwright.dev/) | Cross-browser E2E + API testing |
-| TypeScript (strict) | Type-safe test code |
-| @axe-core/playwright | WCAG 2.1 AA accessibility audits |
-| GitHub Actions | CI matrix with browser sharding |
-| Page Object Model | Maintainable, reusable selectors |
-| Custom fixtures | Dependency injection for pages |
+| Herramienta | Propósito |
+|-------------|-----------|
+| [Playwright](https://playwright.dev/) | E2E cross-browser + pruebas de API |
+| TypeScript (strict) | Código de pruebas con tipado estricto |
+| @axe-core/playwright | Auditorías de accesibilidad WCAG 2.1 AA |
+| GitHub Actions | CI con matrix de navegadores |
+| Page Object Model | Locators reutilizables y mantenibles |
+| Custom fixtures | Inyección de dependencias por test |
 
 ---
 
-## Project structure
+## Estructura del proyecto
 
 ```
 qa-automation-portfolio/
 ├── .github/workflows/playwright.yml   # CI: Chromium + Firefox + Safari + API
 ├── src/
 │   ├── pages/                         # Page Object Model
-│   │   ├── base.page.ts               # Base class with shared methods
+│   │   ├── base.page.ts               # Clase base con métodos compartidos
 │   │   ├── home.page.ts
 │   │   ├── login.page.ts
 │   │   ├── register.page.ts
 │   │   ├── courses.page.ts
 │   │   └── progress.page.ts
 │   ├── fixtures/
-│   │   └── base.fixture.ts            # Composed page fixtures
+│   │   └── base.fixture.ts            # Fixtures compuestos por página
 │   └── utils/
-│       └── test-data-factory.ts       # Test data + boundary constants
+│       └── test-data-factory.ts       # Datos de prueba y constantes de límites
 ├── tests/
 │   ├── e2e/
-│   │   ├── auth/login.spec.ts         # 7 login tests
-│   │   ├── auth/register.spec.ts      # 12 registration tests
-│   │   ├── courses/courses.spec.ts    # 6 enrollment tests
-│   │   └── progress/progress.spec.ts  # 6 state transition tests
+│   │   ├── auth/login.spec.ts         # 7 pruebas de login
+│   │   ├── auth/register.spec.ts      # 12 pruebas de registro
+│   │   ├── courses/courses.spec.ts    # 6 pruebas de inscripción
+│   │   └── progress/progress.spec.ts  # 6 pruebas de transición de estado
 │   ├── api/
-│   │   └── enroll-api.spec.ts         # 5 API contract tests
+│   │   └── enroll-api.spec.ts         # 5 pruebas de contrato de API
 │   └── accessibility/
-│       └── home-a11y.spec.ts          # 5 WCAG 2.1 AA tests
+│       └── home-a11y.spec.ts          # 5 pruebas WCAG 2.1 AA
 ├── playwright.config.ts
 └── .env.example
 ```
 
 ---
 
-## Getting started
+## Cómo ejecutar
 
-### Prerequisites
+### Requisitos previos
 - Node.js 20+
 - npm 9+
 
-### Install
+### Instalación
 
 ```bash
 git clone https://github.com/danaysferro9-hue/qa-automation-portfolio.git
@@ -86,25 +86,25 @@ npm install
 npx playwright install
 ```
 
-### Run tests
+### Ejecución de pruebas
 
 ```bash
-# All tests
+# Todas las pruebas
 npm test
 
-# By layer
+# Por capa
 npm run test:e2e
 npm run test:api
 npm run test:a11y
 
-# By tag
+# Por etiqueta
 npm run test:smoke
 npm run test:regression
 
-# Interactive UI mode
+# Modo UI interactivo
 npm run test:ui
 
-# View last report
+# Ver último reporte
 npm run test:report
 ```
 
@@ -112,30 +112,30 @@ npm run test:report
 
 ## CI/CD
 
-GitHub Actions runs the full suite on every push and PR, plus a scheduled daily run (Mon–Fri 8am UTC):
+GitHub Actions ejecuta la suite completa en cada push y pull request, más una ejecución diaria programada (lunes a viernes, 8am UTC):
 
-- Chromium, Firefox, WebKit + Mobile Chrome
-- Separate API job for fast feedback
-- HTML report artifact retained 30 days
-
----
-
-## Key design decisions
-
-| Decision | Rationale |
-|----------|-----------|
-| Page Object Model | Isolates locators from test logic |
-| Custom Playwright fixtures | Clean DI — no boilerplate per test |
-| `getByRole` / `getByLabel` selectors | Resilient to CSS changes, a11y-aligned |
-| Boundary value constants in factory | Single source of truth for limits |
-| No `waitForTimeout` anywhere | All waits are semantic |
-| axe-core in CI | Catches accessibility regressions automatically |
+- Chromium, Firefox, WebKit y Mobile Chrome
+- Job separado para API (feedback rápido)
+- Reporte HTML disponible como artefacto por 30 días
 
 ---
 
-## Author
+## Decisiones de diseño
+
+| Decisión | Justificación |
+|----------|---------------|
+| Page Object Model | Aísla los locators de la lógica de prueba |
+| Fixtures personalizados de Playwright | Inyección de dependencias limpia, sin repetición |
+| Selectores `getByRole` / `getByLabel` | Resistentes a cambios de CSS, alineados con accesibilidad |
+| Constantes de valores límite en factory | Fuente única de verdad para los límites del sistema |
+| Sin `waitForTimeout` en ningún test | Todas las esperas son semánticas |
+| axe-core integrado en CI | Detecta regresiones de accesibilidad automáticamente |
+
+---
+
+## Autora
 
 **Danays Ernesto**  
 QA Automation Engineer
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/YOUR_PROFILE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-blue)](https://linkedin.com/in/YOUR_PROFILE)
